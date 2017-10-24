@@ -1396,9 +1396,14 @@ public class ImageUtil {
 	// the code returning this property bears this out. However this does
 	// not guarantee that the format won't change in the future, 
 	// though that seems unlikely.
-	jvmVersionString = jvmVersionString.substring(verIndex+2);
 	
-	int jvmVersion = Integer.parseInt(jvmVersionString);
+	int jvmVersion;
+	if( verIndex == -1 || jvmVersionString.startsWith("9") )  {
+		jvmVersion = 9;
+	}
+	else {
+		jvmVersion = Integer.parseInt(jvmVersionString.substring(verIndex+2));
+	}
 	
 	if (jvmVendor.equals("Sun Microsystems Inc.")) {
 	    
